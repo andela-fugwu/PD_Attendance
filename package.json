@@ -5,6 +5,7 @@
   "author": "Andela",
   "description": "A Bot integrated with slack to enable andela fellows sign PD attendance by sending a DM to the Bot and also enable Admins query attendance information",
   "dependencies": {
+    "async": "^1.1.0",
     "cron": "^1.0.9",
     "firebase": "^2.2.5",
     "firebase-token-generator": "^2.0.0",
@@ -22,8 +23,11 @@
     "hubot-shipit": "^0.2.0",
     "hubot-slack": "^3.3.0",
     "hubot-youtube": "^0.1.2",
+    "install": "^0.1.8",
     "lodash": "^3.9.3",
-    "moment": "^2.10.3"
+    "moment": "^2.10.3",
+    "needle": "^0.9.2",
+    "random-codes": "0.0.10"
   },
   "engines": {
     "node": "0.10.x"
