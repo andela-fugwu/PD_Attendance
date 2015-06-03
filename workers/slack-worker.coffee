@@ -11,19 +11,15 @@ getSlackUserList = (rootRef) ->
     _.each users, (user) ->
       email = user.profile.email
       username = user.name
-      rootRef.child('fellows').orderByChild('email').equalTo(email).on 'child_added', (snap) ->
-        if snap.val()
-          uid = snap.ref().key()
-          rootRef.child('fellows').child(uid).child('slack_id').set username
-        return
-      return
-    return
-  return
-
+      if email?
+        rootRef.child('fellows').orderByChild('email').equalTo(email).on 'child_added', (snap) ->
+          if snap.val()
+            uid = snap.ref().key()
+            rootRef.child('fellows').child(uid).child('slack_id').set username
+          
 module.exports = (rootRef) ->
-  # Weekly schedule (4pm every sunday)
-  new CronJob('* * * * * *', (->
-    console.log 'test'
+  #Weekly schedule (4pm every sunday)
+  new CronJob('0 0 16 * * 0', (->
     getSlackUserList rootRef
     return
   ), null, true, 'Africa/Lagos')

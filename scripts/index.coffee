@@ -15,6 +15,8 @@ authenticate = require('./authentication')
 schedule = require('./schedule')
 skilltreeWorker = require('../workers/skilltree')
 slackWorker = require('../workers/slack-worker')
+cmdHandler = require('./cmd-handler')
+code = require('./code')
 
 rootRef = null
 
@@ -24,8 +26,17 @@ module.exports = (robot) ->
       rootRef = ref
       schedule.run(robot)
       skilltreeWorker(rootRef)
-      console.log 'run'
       slackWorker(rootRef)
 
   robot.hear /(.*)information?/i, (res) ->
     res.send 'I give PD details'
+
+  robot.respond /code: (.*)/i, (res) ->
+    enteredCode = res.match[1] 
+    user = res.message.user.name
+    code.verify enteredCode, (correct) ->
+      if correct
+        cmdHandler.setPresent user
+        res.reply "You've been registered as present"
+        return
+      res.reply "Code Incorrect!" 
