@@ -5,6 +5,7 @@ _ = require('lodash')
 authenticate = require('./authentication')
 rootRef = authenticate.root
 attendanceCodeRef = rootRef.child('attendance_code')
+attendanceCodesRef = rootRef.child('attendance_codes')
 
 config = {
   chars: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -15,31 +16,36 @@ config = {
 }
 
 module.exports = 
-  generate: (cb) ->
+  generate: (number ,cb ) ->
     rc = new RandomCodes(config)
     attendanceCode = rc.generate()
-    attendanceCodeRef.set(attendanceCode, () ->
-      cb(attendanceCode)
-      )
+    codes = []
+    i = 1
+    while i <= number
+      code = rc.generate()
+      codes.push(code)
+      attendanceCodesRef.push({code: code})
+      i++
+    cb(codes)
 
   setAttendance: () ->
     today = moment(Date.now()).format('YYYYMMDD')
     rootRef.child('fellows').once 'value', (fellowSnap) ->
       fellowSnap.forEach (person) ->
         slackName = person.val().slack_id
-        if slackName?
+        cohort = person.val().cohort.name != 'Class VIII'
+        if slackName? & cohort
           user = rootRef.child('attendance').child(today).push()
           user.set({slack: slackName, attended:false})
         false
 
   verify: (enteredCode, cb) ->
-    rootRef.child('attendance_code').once 'value', (codeSnap) ->
-      return cb(true) if enteredCode is codeSnap.val()
+    attendanceCodesRef.orderByChild('code').equalTo(enteredCode).on 'child_added', (snap) ->
+      if snap.val()
+        uid = snap.ref().key()
+        attendanceCodesRef.child(uid).child('code').set 'used'
+        return cb(true)
       cb(false)
-
-
-
-
 
 
 

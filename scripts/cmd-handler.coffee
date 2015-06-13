@@ -7,9 +7,9 @@ rootRef = authenticate.root
 
 module.exports = 
   
-  getAdmin: (cb) ->
+  getGLeads: (cb) ->
     rootRef.child('admin').once 'value', (snap) ->
-      cb(Object.keys snap.val())
+      cb(snap.val())
 
   setPresent: (slackId) ->
     today = moment(Date.now()).format('YYYYMMDD')
@@ -18,6 +18,3 @@ module.exports =
       val = snap.val()
       val.attended = true
       snap.ref().set(val)
-
-
-

@@ -16,10 +16,10 @@ getSlackUserList = (rootRef) ->
           if snap.val()
             uid = snap.ref().key()
             rootRef.child('fellows').child(uid).child('slack_id').set username
-          
+
 module.exports = (rootRef) ->
   #Weekly schedule (4pm every sunday)
-  new CronJob('0 0 16 * * 0', (->
+  new CronJob('0 0 17 * * 0', (->
     getSlackUserList rootRef
     return
   ), null, true, 'Africa/Lagos')
