@@ -4,7 +4,6 @@ moment = require('moment')
 _ = require('lodash')
 authenticate = require('./authentication')
 rootRef = authenticate.root
-attendanceCodeRef = rootRef.child('attendance_code')
 attendanceCodesRef = rootRef.child('attendance_codes')
 
 config = {
@@ -36,7 +35,7 @@ module.exports =
         cohort = person.val().cohort.name != 'Class VIII'
         if slackName? & cohort
           user = rootRef.child('attendance').child(today).push()
-          user.set({slack: slackName, attended:false})
+          user.set({slack: slackName, attended:false, code:'none'})
         false
 
   verify: (enteredCode, cb) ->
@@ -46,6 +45,8 @@ module.exports =
         attendanceCodesRef.child(uid).child('code').set 'used'
         return cb(true)
       cb(false)
+  generate_absentee: () ->
+    today = moment(Date.now()).format('YYYYMMDD')
 
 
 

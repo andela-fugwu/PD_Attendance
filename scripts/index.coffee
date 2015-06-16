@@ -30,13 +30,15 @@ module.exports = (robot) ->
 
   robot.hear /(.*)information?/i, (res) ->
     res.send 'I give PD details'
+  robot.hear /(.*)help?/i, (res) ->
+    res.send 'send "code: your-code" to register for attendance'
 
   robot.respond /code: (.*)/i, (res) ->
     enteredCode = res.match[1] 
     user = res.message.user.name
     code.verify enteredCode, (correct) ->
       if correct
-        cmdHandler.setPresent user
+        cmdHandler.setPresent user, enteredCode
         res.reply "You've been registered as present"
         return
-      res.reply "Code Incorrect!" 
+      res.reply "Code Incorrect!"
