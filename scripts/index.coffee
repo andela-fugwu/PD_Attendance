@@ -28,9 +28,9 @@ module.exports = (robot) ->
       skilltreeWorker(rootRef)
       slackWorker(rootRef)
 
-  robot.hear /(.*)information?/i, (res) ->
+  robot.respond /(.*)information?/i, (res) ->
     res.send 'I give PD details'
-  robot.hear /(.*)help?/i, (res) ->
+  robot.respond /(.*)help?/i, (res) ->
     res.send 'send "code: your-code" to register for attendance'
 
   robot.respond /code: (.*)/i, (res) ->
