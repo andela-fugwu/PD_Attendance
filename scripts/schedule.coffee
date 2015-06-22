@@ -5,7 +5,7 @@ _ = require('lodash')
 
 module.exports = 
   run: (robot) ->
-    new CronJob('00 25 8 * * 1,4,5', (->
+    new CronJob('00 38 8 * * 1,4,5', (->
       cmdHandler.getGLeads (leads) ->
         user = new Object
         _.each leads, (codes_number, slack_id) ->
