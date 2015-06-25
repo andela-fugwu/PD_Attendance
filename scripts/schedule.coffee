@@ -17,7 +17,7 @@ module.exports =
             message_string = message_string + '`' + code + '`' + '\n'
           message_string = message_string + 'this is to test this app \n'
           robot.send user, message_string
-          console.log 'code sent to : ' + user + '  ' + message_string
+          console.log 'code sent to : ' + user.room + '  ' + message_string
         # ), null, true, 'Africa/Lagos')
 
     #runs every at 8 am every monday, thursday and friday

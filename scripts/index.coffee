@@ -29,11 +29,13 @@ module.exports = (robot) ->
       slackWorker(rootRef)
 
   robot.respond /(.*)information?/i, (res) ->
+    console.log 'information' + ' ' + res.message.user.name
     res.send 'I give PD details'
   robot.respond /(.*)help?/i, (res) ->
     res.send 'send "code: your-code" to register for attendance'
 
   robot.respond /code: (.*)/i, (res) ->
+    console.log 'code' + ' ' + res.message.user.name
     enteredCode = res.match[1] 
     user = res.message.user.name
     code.verify enteredCode, (correct) ->
@@ -42,3 +44,6 @@ module.exports = (robot) ->
         res.reply "You've been registered as present"
         return
       res.reply "Code Incorrect!"
+  robot.respond /(.*)/i, (res) ->
+    console.log 'unknown comman' + ' ' + res.message.user.name + '  ' + res.message
+    res.send "I don't understand this command yet"    
