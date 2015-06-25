@@ -21,7 +21,7 @@
     "hubot-rules": "^0.1.0",
     "hubot-scripts": "^2.5.16",
     "hubot-shipit": "^0.2.0",
-    "hubot-slack": "git+https://github.com/slackhq/hubot-slack.git",
+    "hubot-slack": "^3.3.0",
     "hubot-youtube": "^0.1.2",
     "install": "^0.1.8",
     "lodash": "^3.9.3",
