@@ -8,7 +8,7 @@ rootRef = authenticate.root
 module.exports = 
   
   getGLeads: (cb) ->
-    rootRef.child('group_leaders').once 'value', (snap) ->
+    rootRef.child('test_leaders').once 'value', (snap) ->
       cb(snap.val())
 
   setPresent: (slackId, code_used) ->
