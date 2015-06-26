@@ -15,7 +15,7 @@ module.exports =
             message_string = 'Attendance codes for today are: \n'
             _.each attendanceCodes, (code) ->
               message_string = message_string + '`' + code + '`' + '\n'
-            message_string = message_string + 'this is to test this app \n'
+            message_string = message_string + 'Please share to every member of your group that was present for pd today. let them dm the bot in this format "code: your-code" to register for attendance \n'
             robot.send user, message_string
             console.log 'code sent to : ' + user.room + '  ' + message_string
         ), null, true, 'Africa/Lagos')
