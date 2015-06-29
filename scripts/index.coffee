@@ -28,7 +28,11 @@ module.exports = (robot) ->
       skilltreeWorker(rootRef)
       slackWorker(rootRef)
 
-  robot.respond /(.*)information?/i, (res) ->
+  robot.respond /hi?/i, (res) ->
+    username = res.message.user.name
+    res.send 'Hello ' + username + '; I am pd-bot. I give PD details'
+      
+  robot.respond /information?/i, (res) ->
     console.log 'information' + ' ' + res.message.user.name
     res.send 'I give PD details'
 
