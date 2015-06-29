@@ -43,7 +43,6 @@ module.exports = (robot) ->
         cmdHandler.setPresent user, enteredCode
         res.reply "You've been registered as present"
         return
-      res.reply "Code Incorrect!"
-  robot.respond /(.*)/i, (res) ->
-    console.log 'unknown comman' + ' ' + res.message.user.name + '  ' + res.message
-    res.send "I don't understand this command yet"    
+      else 
+        res.reply "Code Incorrect!"
+        return

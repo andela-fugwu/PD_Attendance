@@ -39,14 +39,19 @@ module.exports =
         false
 
   verify: (enteredCode, cb) ->
-    attendanceCodesRef.orderByChild('code').equalTo(enteredCode).on 'child_added', (snap) ->
+    uid = ''
+    attendanceCodesRef.orderByChild('code').equalTo(enteredCode).on 'value', (snap) ->
       if snap.val()
-        uid = snap.ref().key()
-        attendanceCodesRef.child(uid).child('code').set 'used'
-        return cb(true)
-      cb(false)
-  generate_absentee: () ->
-    today = moment(Date.now()).format('YYYYMMDD')
+        uid =  Object.keys(snap.val())[0]
+    if uid
+      attendanceCodesRef.child(uid).remove()
+      return cb(true)
+    else
+      return cb(false)
+
+  expireCodes: () ->
+    attendanceCodesRef.set 'codes expired'
+    return
 
 
 
