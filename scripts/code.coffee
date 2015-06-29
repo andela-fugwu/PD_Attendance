@@ -39,14 +39,12 @@ module.exports =
         false
 
   verify: (enteredCode, cb) ->
-    uid = ''
-    attendanceCodesRef.orderByChild('code').equalTo(enteredCode).on 'value', (snap) ->
+    attendanceCodesRef.orderByChild('code').equalTo(enteredCode).once 'value', (snap) ->
       if snap.val()
         uid =  Object.keys(snap.val())[0]
-    if uid
-      attendanceCodesRef.child(uid).remove()
-      return cb(true)
-    else
+        if uid
+          attendanceCodesRef.child(uid).remove()
+          return cb(true)
       return cb(false)
 
   expireCodes: () ->

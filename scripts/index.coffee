@@ -31,6 +31,7 @@ module.exports = (robot) ->
   robot.respond /(.*)information?/i, (res) ->
     console.log 'information' + ' ' + res.message.user.name
     res.send 'I give PD details'
+
   robot.respond /(.*)help?/i, (res) ->
     res.send 'send "code: your-code" to register for attendance'
 
@@ -46,3 +47,10 @@ module.exports = (robot) ->
       else 
         res.reply "Code Incorrect!"
         return
+
+  robot.error (err, res) ->
+    robot.logger.error "DOES NOT COMPUTE"
+    if res?
+      res.reply "DOES NOT COMPUTE"
+
+
