@@ -15,11 +15,9 @@ getUsers = (rootRef, url, header) ->
         _.each users, (user) ->
           uid = user.uid
           delete user.uid
-          delete user.level
           delete user.first_name
           delete user.last_name
           delete user.known_as
-          delete user.picture
           delete user.tags
           if user.cohort
             if user.cohort.name is "Management" or user.cohort.name is "Ninjas"
