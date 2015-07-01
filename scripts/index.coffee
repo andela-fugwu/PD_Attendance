@@ -30,6 +30,7 @@ module.exports = (robot) ->
 
   robot.respond /hi?/i, (res) ->
     username = res.message.user.name
+    console.log 'hi', username
     res.send 'Hello ' + username + '; I am pd-bot. I give PD details'
       
   robot.respond /information?/i, (res) ->
@@ -37,10 +38,11 @@ module.exports = (robot) ->
     res.send 'I give PD details'
 
   robot.respond /(.*)help?/i, (res) ->
+    console.log 'help', res.message.user.name
     res.send 'send "code: your-code" to register for attendance'
 
   robot.respond /code: (.*)/i, (res) ->
-    console.log 'code' + ' ' + res.message.user.name
+    console.log 'code', res.message.user.name
     enteredCode = res.match[1] 
     user = res.message.user.name
     code.verify enteredCode, (correct) ->
