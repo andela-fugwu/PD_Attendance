@@ -17,7 +17,8 @@ module.exports =
               message_string = message_string + '`' + code + '`' + '\n'
             message_string = message_string + 'Please share to every member of your group that was present for pd today. let them dm the bot in this format "code: your-code" to register for attendance \n'
             robot.send user, message_string
-            console.log 'code sent to : ' + user.room + '  ' + message_string
+            console.log 'code sent to : ' + user.room 
+            console.log message_string
         ), null, true, 'Africa/Lagos')
 
     #runs every at 8 am every monday, thursday and friday
@@ -41,6 +42,6 @@ module.exports =
     #   cmdHandler.sendReminders(robot)
     # ), null, true, 'Africa/Lagos')
 
-    # new CronJob('00 30 12 * * 1,4,5', (->
-    #   cmdHandler.getNotAttended(robot)
-    # ), null, true, 'Africa/Lagos')
+    new CronJob('00 30 14 * * 1,4,5', (->
+      cmdHandler.getNotAttended(robot)
+    ), null, true, 'Africa/Lagos')
