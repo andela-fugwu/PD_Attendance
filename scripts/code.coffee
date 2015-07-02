@@ -36,6 +36,7 @@ module.exports =
         if slackName? & cohort
           user = rootRef.child('attendance').child(today).push()
           user.set({slack: slackName, attended:false, code:'none'})
+          console.log {slack: slackName, attended:false, code:'none'}
         false
 
   verify: (enteredCode, cb) ->
