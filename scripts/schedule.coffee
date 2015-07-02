@@ -22,11 +22,11 @@ module.exports =
         ), null, true, 'Africa/Lagos')
 
     #runs every at 8 am every monday, thursday and frid
-    # new CronJob('00 00 8 * * 1,4,5', (->
-    code.setAttendance()
-    # ), null, true, 'Africa/Lagos')
+    new CronJob('00 00 8 * * 1,4,5', (->
+      code.setAttendance()
+    ), null, true, 'Africa/Lagos')
 
-    new CronJob('00 00 12 * * 1,4,5', (->
+    new CronJob('00 00 16 * * 1,4,5', (->
       code.expireCodes()
     ), null, true, 'Africa/Lagos')
 
@@ -42,6 +42,6 @@ module.exports =
     #   cmdHandler.sendReminders(robot)
     # ), null, true, 'Africa/Lagos')
 
-    new CronJob('00 30 14 * * 1,4,5', (->
+    new CronJob('00 30 16 * * 1,4,5', (->
       cmdHandler.getNotAttended(robot)
     ), null, true, 'Africa/Lagos')
