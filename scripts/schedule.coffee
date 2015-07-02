@@ -21,7 +21,7 @@ module.exports =
             console.log message_string
         ), null, true, 'Africa/Lagos')
 
-    #runs every at 8 am every monday, thursday and friday
+    #runs every at 8 am every monday, thursday and frida
     # new CronJob('00 00 8 * * 1,4,5', (->
     code.setAttendance()
     # ), null, true, 'Africa/Lagos')
