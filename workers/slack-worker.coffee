@@ -19,8 +19,8 @@ getSlackUserList = (rootRef) ->
 
 module.exports = (rootRef) ->
   #Weekly schedule (4pm every sunday)
-  new CronJob('0 0 17 * * 0', (->
-    getSlackUserList rootRef
-    return
-  ), null, true, 'Africa/Lagos')
+  # new CronJob('0 0 17 * * 0', (->
+  getSlackUserList rootRef
   return
+  # ), null, true, 'Africa/Lagos')
+  # return
