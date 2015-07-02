@@ -22,9 +22,9 @@ module.exports =
         ), null, true, 'Africa/Lagos')
 
     #runs every at 8 am every monday, thursday and friday
-    new CronJob('00 00 8 * * 1,4,5', (->
-      code.setAttendance()
-    ), null, true, 'Africa/Lagos')
+    # new CronJob('00 00 8 * * 1,4,5', (->
+    code.setAttendance()
+    # ), null, true, 'Africa/Lagos')
 
     new CronJob('00 00 12 * * 1,4,5', (->
       code.expireCodes()
