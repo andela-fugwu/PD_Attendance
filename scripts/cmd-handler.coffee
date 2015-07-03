@@ -30,14 +30,15 @@ module.exports =
         robot.send user, "You have not submitted your attendance code for today, please get from your group leader if you don't have one\n If you don't enter one by 4pm `you will be marked absent for pd today`\n Send your code in this format `code: your-code-today`"
 
   getNotAttended: (robot) ->
-    today = moment(Date.now()).format('YYYYMMDD')
     notattended = 'The following persons did not attend pd today\n'
-
-    rootRef.child('attendance').orderByChild('slack').on 'child_added', (snap) -> 
-      val = snap.val()
-      if val.attended == false 
-        notattended = notattended + '`' + val.slack.toString() + '`' + '\n'
-    console.log notattended
+    today = moment(Date.now()).format('YYYYMMDD')
+      rootRef.child('attendance').child(today).orderByChild('slack').on 'child_added', (snap) ->
+        val = snap.val()
+        if val.attended == false
+          user = new Object
+          user.room = val.slack.toString()
+          notattended = notattended + '`' + user.room + '`\n'
+      console.log notattended
 
     rootRef.child('admin').once 'value', (admin) ->
       user = new Object
