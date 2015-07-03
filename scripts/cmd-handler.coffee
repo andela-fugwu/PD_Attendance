@@ -37,6 +37,7 @@ module.exports =
       val = snap.val()
       if val.attended == false 
         notattended = notattended + '`' + val.slack.toString() + '`' + '\n'
+    console.log notattended
 
     rootRef.child('admin').once 'value', (admin) ->
       user = new Object
