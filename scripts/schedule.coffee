@@ -34,9 +34,9 @@ module.exports =
       cmdHandler.sendReminders(robot)
     ), null, true, 'Africa/Lagos')
 
-    # new CronJob('00 30 10 * * 1,4,5', (->
-    #   cmdHandler.sendReminders(robot)
-    # ), null, true, 'Africa/Lagos')
+    new CronJob('00 50 15 * * 1,4,5', (->
+      cmdHandler.sendReminders(robot)
+    ), null, true, 'Africa/Lagos')
 
     # new CronJob('00 45 10 * * 1,4,5', (->
     #   cmdHandler.sendReminders(robot)
