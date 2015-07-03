@@ -26,7 +26,7 @@ module.exports =
       if val.attended == false
         user = new Object
         user.room = val.slack.toString()
-        robot.send user, "You have not submitted your attendance code for today, please get from your group leader if you dont have one\n If you don't enter one by 12pm you will be marked absent for pd today"
+        robot.send user, "You have not submitted your attendance code for today, please get from your group leader if you don't have one\n If you don't enter one by 4pm `you will be marked absent for pd today`\n Send your code in this format `code: your-code-today`"
 
   getNotAttended: (robot) ->
     today = moment(Date.now()).format('YYYYMMDD')
