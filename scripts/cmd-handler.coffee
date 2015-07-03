@@ -26,6 +26,7 @@ module.exports =
       if val.attended == false
         user = new Object
         user.room = val.slack.toString()
+        console.log 'reminder sent to', user.room
         robot.send user, "You have not submitted your attendance code for today, please get from your group leader if you don't have one\n If you don't enter one by 4pm `you will be marked absent for pd today`\n Send your code in this format `code: your-code-today`"
 
   getNotAttended: (robot) ->
