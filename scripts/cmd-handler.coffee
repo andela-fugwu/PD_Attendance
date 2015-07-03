@@ -32,13 +32,13 @@ module.exports =
   getNotAttended: (robot) ->
     notattended = 'The following persons did not attend pd today\n'
     today = moment(Date.now()).format('YYYYMMDD')
-      rootRef.child('attendance').child(today).orderByChild('slack').on 'child_added', (snap) ->
-        val = snap.val()
-        if val.attended == false
-          user = new Object
-          user.room = val.slack.toString()
-          notattended = notattended + '`' + user.room + '`\n'
-      console.log notattended
+    rootRef.child('attendance').child(today).orderByChild('slack').on 'child_added', (snap) ->
+      val = snap.val()
+      if val.attended == false
+        user = new Object
+        user.room = val.slack.toString()
+        notattended = notattended + '`' + user.room + '`\n'
+    console.log notattended
 
     rootRef.child('admin').once 'value', (admin) ->
       user = new Object
