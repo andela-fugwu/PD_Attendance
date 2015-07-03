@@ -33,7 +33,7 @@ module.exports =
     today = moment(Date.now()).format('YYYYMMDD')
     notattended = 'The following persons did not attend pd today\n'
 
-    rootRef.child('attendance').child(today).orderByChild('slack').on 'child_added', (snap) -> 
+    rootRef.child('attendance').orderByChild('slack').on 'child_added', (snap) -> 
       val = snap.val()
       if val.attended == false 
         notattended = notattended + '`' + val.slack.toString() + '`' + '\n'
