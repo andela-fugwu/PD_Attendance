@@ -42,6 +42,6 @@ module.exports =
     #   cmdHandler.sendReminders(robot)
     # ), null, true, 'Africa/Lagos')
 
-    # new CronJob('00 05 16 * * 1,4,5', (->
-    cmdHandler.getNotAttended(robot)
-    # ), null, true, 'Africa/Lagos')
+    new CronJob('00 05 16 * * 1,4,5', (->
+      cmdHandler.getNotAttended(robot)
+    ), null, true, 'Africa/Lagos')
