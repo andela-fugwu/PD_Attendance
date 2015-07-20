@@ -20,7 +20,7 @@ getUsers = (rootRef, url, header) ->
           delete user.known_as
           delete user.tags
           if user.cohort
-            if user.cohort.name is "Management" or user.cohort.name is "Ninjas"
+            if user.cohort.name is "Management" or user.cohort.name is "Ninjas" or user.cohort.name is "Trainers"
               console.log 'mgt or ninja'
             else
               rootRef.child('fellows').child(uid).set user
@@ -38,9 +38,9 @@ getUsers = (rootRef, url, header) ->
 
 module.exports = (rootRef) ->
   #Weekly schedule (4pm every sunday)
-  new CronJob('0 0 16 * * 0', (->
-    getUsers rootRef, config.skilltree.users, config.skilltree.headers
-    return
-  ), null, true, 'Africa/Lagos')
+  # new CronJob('0 0 16 * * 0', (->
+  getUsers rootRef, config.skilltree.users, config.skilltree.headers
   return
+  # ), null, true, 'Africa/Lagos')
+  # return
 
