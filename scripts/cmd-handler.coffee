@@ -48,5 +48,5 @@ module.exports =
 
     rootRef.child('admin').once 'value', (admin) ->
       user = new Object
-      user.room = admin.val().toString()
+      user.room = 'aiveee'
       robot.send user, notattended
