@@ -20,7 +20,7 @@ module.exports =
       snap.ref().set(val)
 
   sendReminders: (robot) ->
-    counter = 0;
+    # counter = 0;
     today = moment(Date.now()).format('YYYYMMDD')
     rootRef.child('attendance').child(today).orderByChild('slack').on 'child_added', (snap) ->
       val = snap.val()
@@ -29,12 +29,12 @@ module.exports =
         user.room = val.slack.toString()
         console.log 'reminder sent to', user.room
         robot.send user, "You have not submitted your attendance code for today, please get from your group leader if you don't have one\n If you don't enter one by 4pm `you will be marked absent for pd today`\n Send your code in this format `code: your-code-today`"
-        counter = conunter + 1
-        if conunter == 8
-          setTimeout (->
-          counter = 0
-          return
-        ), 120000
+        # counter = conunter + 1
+        # if conunter == 8
+        #   setTimeout (->
+        #   counter = 0
+        #   return
+        # ), 120000
 
   getNotAttended: (robot) ->
     notattended = 'The following persons did not attend pd today\n'
