@@ -23,4 +23,4 @@ module.exports = (rootRef) ->
     getSlackUserList rootRef
     return
   ), null, true, 'Africa/Lagos')
-  # return
+  return
