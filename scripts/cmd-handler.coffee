@@ -29,7 +29,7 @@ module.exports =
         user.room = val.slack.toString()
         console.log 'reminder sent to', user.room
         robot.send user, "You have not submitted your attendance code for today, please get from your group leader if you don't have one\n If you don't enter one by 4pm `you will be marked absent for pd today`\n Send your code in this format `code: your-code-today`"
-        if counter == 8
+        if counter == 5
           setTimeout (->
             counter = 0
             return
@@ -48,5 +48,5 @@ module.exports =
 
     rootRef.child('admin').once 'value', (admin) ->
       user = new Object
-      user.room = 'aiveee'
+      user.room = 'aiveee'.toString()
       robot.send user, notattended
