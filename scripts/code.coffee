@@ -32,7 +32,7 @@ module.exports =
     rootRef.child('fellows').once 'value', (fellowSnap) ->
       fellowSnap.forEach (person) ->
         slackName = person.val().slack_id
-        cohort = person.val().cohort.name != 'Class VIII'
+        cohort = person.val().cohort.name in ['Class I', 'Class II', 'Class III', 'Class IV', 'Class V', 'Class VI', 'Class VII']
         if slackName? & cohort
           user = rootRef.child('attendance').child(today).push()
           user.set({slack: slackName, attended:false, code:'none'})

@@ -7,9 +7,19 @@ rootRef = authenticate.root
 
 module.exports = 
   
-  getGLeads: (cb) ->
-    rootRef.child('group_leaders').once 'value', (snap) ->
-      cb(snap.val())
+  getGLead: (google_id, cb) ->
+    # rootRef.child('group_leaders').once 'value', (snap) ->
+    #   cb(snap.val())
+    rootRef.child('fellows').child(google_id).once 'value', (snap) ->
+      cb(snap.val().slack_id)
+
+  getGroups: (cb) ->
+    all_pd_groups = []
+    rootRef.child('pd_groups').once 'value', (pd_groupsSnap) ->
+      pd_groupsSnap.forEach (snap) ->
+        all_pd_groups.push({length: snap.val().fellows.length, leader: snap.val().group_leader}) if snap.val().active
+        false
+      cb(all_pd_groups)
 
   setPresent: (slackId, code_used) ->
     today = moment(Date.now()).format('YYYYMMDD')
