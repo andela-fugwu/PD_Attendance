@@ -1,7 +1,7 @@
 development = 
   firebase:
-    rootRefUrl: 'https://pd-attendance-dev.firebaseio.com/'
-    secretKey: 'zrGY4ipiJKGHzMN6refd5wvT3NfkHKJfPsSp1tTa'
+    rootRefUrl: 'https://pdbot-attendance-dev.firebaseio.com/'
+    secretKey: '7whzI11RZI76AABkQbDAW2g0EVVJcaBH65FVH4x2'
 
   skilltree: 
     users: 'http://skilltree.andela.co/api/v1/users'
