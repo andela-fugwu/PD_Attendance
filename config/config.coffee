@@ -10,7 +10,7 @@ development =
 
   slack:
     userList: 'https://slack.com/api/users.list'
-    token: 'xoxp-2853699384-2972142149-4450365564-69395f'
+    token: 'xoxb-6989422502-0X6QLLtZdhwG1wZu0ann5mvO'
 
 production = 
   firebase:
