@@ -14,7 +14,7 @@ config = {
   part_size: 4
 }
 
-module.exports = 
+module.exports =
   generate: (number ,cb ) ->
     rc = new RandomCodes(config)
     attendanceCode = rc.generate()
@@ -32,7 +32,7 @@ module.exports =
     rootRef.child('fellows').once 'value', (fellowSnap) ->
       fellowSnap.forEach (person) ->
         slackName = person.val().slack_id
-        cohort = person.val().cohort.name in ['Class I', 'Class II', 'Class III', 'Class IV', 'Class V', 'Class VI', 'Class VII'] and person.val().slack_id not in ['bosun', 'frankie']
+        cohort = person.val().cohort.name in ['Class I', 'Class II', 'Class III', 'Class IV', 'Class V', 'Class VI', 'Class VII'] and person.val().slack_id not in ['bosun']
         if slackName? & cohort
           user = rootRef.child('attendance').child(today).push()
           user.set({slack: slackName, attended:false, code:'none'})

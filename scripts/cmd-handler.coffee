@@ -5,11 +5,9 @@ authenticate = require('./authentication')
 
 rootRef = authenticate.root
 
-module.exports = 
-  
+module.exports =
+
   getGLead: (google_id, cb) ->
-    # rootRef.child('group_leaders').once 'value', (snap) ->
-    #   cb(snap.val())
     rootRef.child('fellows').child(google_id).once 'value', (snap) ->
       cb(snap.val().slack_id)
 
