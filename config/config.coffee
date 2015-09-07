@@ -1,34 +1,50 @@
-development = 
+development =
   firebase:
     rootRefUrl: 'https://pdbot-attendance-dev.firebaseio.com/'
     secretKey: '7whzI11RZI76AABkQbDAW2g0EVVJcaBH65FVH4x2'
 
-  skilltree: 
+  skilltree:
     users: 'http://skilltree.andela.co/api/v1/users'
-    headers: 
-      'X-AUTH-TOKEN': 'txPFk-ppyzzI0f6iAoF3jC3amGUosLsabznp26gUxn0'
+    headers:
+      'X-AUTH-TOKEN': process.env.SKILL_TREE_TOKEN
 
   slack:
     userList: 'https://slack.com/api/users.list'
-    token: 'xoxb-6989422502-0X6QLLtZdhwG1wZu0ann5mvO'
+    token: process.env.SLACK_TOKEN
 
-production = 
+production =
   firebase:
-    rootRefUrl: 'https://pd-attendance-prod.firebaseio.com/'
-    secretKey: 'qAfuC4xpnJZAmG0DkkXkhzwcp0J6HdnNYfaC2Biv'
+    rootRefUrl: process.env.FB_SERVER_UID
+    secretKey: process.env.FB_SECRET_KEY
 
-   skilltree: 
+  skilltree:
     users: 'http://skilltree.andela.co/api/v1/users'
-    headers: 
-      'X-AUTH-TOKEN': 'txPFk-ppyzzI0f6iAoF3jC3amGUosLsabznp26gUxn0'
+    headers:
+      'X-AUTH-TOKEN': process.env.SKILL_TREE_TOKEN
 
   slack:
     userList: 'https://slack.com/api/users.list'
-    token: 'xoxp-2853699384-2972142149-4450365564-69395f'
+    token: process.env.SLACK_TOKEN
 
-config = 
+staging =
+  firebase:
+    rootRefUrl: process.env.FB_SERVER_UID
+    secretKey: process.env.FB_SECRET_KEY
+
+  skilltree:
+    users: 'http://skilltree.andela.co/api/v1/users'
+    headers:
+      'X-AUTH-TOKEN': process.env.SKILL_TREE_TOKEN
+
+  slack:
+    userList: 'https://slack.com/api/users.list'
+    token: process.env.SKILL_TREE_TOKEN
+
+
+config =
   development: development
   production: production
+  staging: staging
 
 module.exports = config
 

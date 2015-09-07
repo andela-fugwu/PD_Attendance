@@ -1,11 +1,11 @@
 
 Firebase = require("firebase")
 FirebaseTokenGenerator = require("firebase-token-generator")
-env = 'development'
+env = process.env.NODE_ENV || 'development'
 config = require('../config/config')[env]
 rootRef = new Firebase(config.firebase.rootRefUrl)
 
-module.exports = 
+module.exports =
   root : rootRef
 
   firebase : (cb) ->

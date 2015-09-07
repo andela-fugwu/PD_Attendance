@@ -3,21 +3,21 @@ code = require('./code')
 cmdHandler = require('./cmd-handler')
 _ = require('lodash')
 
-module.exports = 
+module.exports =
   run: (robot) ->
     new CronJob('00 00 9 * * 1,4,5', (->
       cmdHandler.getGroups (groups) ->
         user = new Object
         _.each groups, (group) ->
           cmdHandler.getGLead group.leader, (slack_id) ->
-            code.generate group.length, (attendanceCodes) -> 
+            code.generate group.length, (attendanceCodes) ->
               user.room = slack_id.toString()
               message_string = 'Attendance codes for today are: \n'
               _.each attendanceCodes, (code) ->
                 message_string = message_string + '`' + code + '`' + '\n'
               message_string = message_string + 'Please share to every member of your group that was present for pd today. let them dm the bot in this format "code: your-code" to register for attendance \n'
               robot.send user, message_string
-              console.log 'code sent to : ' + user.room 
+              console.log 'code sent to : ' + user.room
               console.log message_string
         ), null, true, 'Africa/Lagos')
 
