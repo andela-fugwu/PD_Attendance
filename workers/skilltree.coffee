@@ -38,9 +38,9 @@ getUsers = (rootRef, url, header) ->
 
 module.exports = (rootRef) ->
   #Weekly schedule (4pm every sunday)
-  new CronJob('0 0 16 * * 0', (->
-    getUsers rootRef, config.skilltree.users, config.skilltree.headers
-    return
-  ), null, true, 'Africa/Lagos')
-  return
+#  new CronJob('0 0 16 * * 0', (->
+  getUsers rootRef, config.skilltree.users, config.skilltree.headers
+#    return
+#  ), null, true, 'Africa/Lagos')
+#  return
 
